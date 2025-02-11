@@ -7,10 +7,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "81s-remote-state"
-    key    = "expense-tools"
+    bucket = "roboshop-cicd-remote-state"
+    key    = "roboshop-cicd-tools-key"
     region = "us-east-1"
-    dynamodb_table = "81s-locking"
+    dynamodb_table = "roboshop-cicd-locking"
   }
 }
 
