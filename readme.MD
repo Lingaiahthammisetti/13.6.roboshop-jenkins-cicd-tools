@@ -9,7 +9,7 @@ Plugins:
 * AWS Steps
 * Rebuild
 * Ansi Color
-* SonarScanner
+* Sonarqube Scanner
 
 Restart Jenkins once plugins are installed
 
@@ -26,6 +26,6 @@ Restart Jenkins once plugins are installed
 * Go to Manage Jenkins -> System
 * Find Global Trusted Pipeline Libraries section
 * Name as jenkins-shared-library, default version main and load implicitly
-* Location is https://github.com/daws-81s/jenkins-shared-library.git
+* Location is https://github.com/Lingaiahthammisetti/13.5.jenkins-shared-library-roboshop.git
 
 Now Jenkins is ready to use.

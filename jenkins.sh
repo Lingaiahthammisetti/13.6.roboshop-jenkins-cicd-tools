@@ -17,3 +17,9 @@ xfs_growfs /var
 systemctl daemon-reload
 systemctl enable jenkins
 systemctl start jenkins
+
+echo "*********************************"
+systemctl status jenkins
+echo "*********************************"
+netstat -lntp
+echo "*********************************"
