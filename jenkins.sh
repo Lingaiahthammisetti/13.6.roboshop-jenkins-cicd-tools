@@ -23,3 +23,4 @@ systemctl status jenkins
 echo "*********************************"
 netstat -lntp
 echo "*********************************"
+

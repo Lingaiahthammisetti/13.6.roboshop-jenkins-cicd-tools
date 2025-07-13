@@ -2,11 +2,9 @@
 
 #resize disk from 20GB to 50GB
 growpart /dev/nvme0n1 4
-
 lvextend -L +10G /dev/mapper/RootVG-homeVol
 lvextend -L +10G /dev/mapper/RootVG-varVol
 lvextend -l +100%FREE /dev/mapper/RootVG-varTmpVol
-
 xfs_growfs /home
 xfs_growfs /var/tmp
 xfs_growfs /var
@@ -27,6 +25,17 @@ yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-co
 systemctl start docker
 systemctl enable docker
 usermod -aG docker ec2-user
+
+# RHEL-9-DevOps-Practice
+# t3.micro
+# allow-everything
+# 50 GB
+lsblk 
+sudo growpart /dev/nvme0n1 4  #t3.micro used only
+sudo lvextend -l +50%FREE /dev/RootVG/rootVol 
+sudo lvextend -l +50%FREE /dev/RootVG/varVol 
+sudo xfs_growfs / 
+sudo xfs_growfs /var 
 
 # Helm
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3

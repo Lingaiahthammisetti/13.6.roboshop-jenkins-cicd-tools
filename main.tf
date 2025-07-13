@@ -11,15 +11,14 @@ module "jenkins_master" {
   tags = {
     Name = "jenkins"
   }
-
   # Define the root volume size and type
-  root_block_device = [
-    {
-      volume_size = 50       # Size of the root volume in GB
-      volume_type = "gp3"    # General Purpose SSD (you can change it if needed)
-      delete_on_termination = true  # Automatically delete the volume when the instance is terminated
-    }
-  ]
+  root_block_device = {
+    encrypted  = false           # Not encrypted
+    type       = "gp3"           # gp3 volume type
+    size       = 100              # 10 GiB
+    iops       = 3000            # 3000 IOPS
+    throughput = 125             # Optional: default for gp3 is 125 MiB/s
+  }
 }
 
 module "jenkins_agent" {
@@ -36,13 +35,13 @@ module "jenkins_agent" {
     Name = "jenkins-agent"
   }
 
-  root_block_device = [
-    {
-      volume_size = 50       # Size of the root volume in GB
-      volume_type = "gp3"    # General Purpose SSD (you can change it if needed)
-      delete_on_termination = true  # Automatically delete the volume when the instance is terminated
-    }
-  ]
+  root_block_device = {
+    encrypted  = false           # Not encrypted
+    type       = "gp3"           # gp3 volume type
+    size       = 100              # 10 GiB
+    iops       = 3000            # 3000 IOPS
+    throughput = 125             # Optional: default for gp3 is 125 MiB/s
+  }
 }
 
 

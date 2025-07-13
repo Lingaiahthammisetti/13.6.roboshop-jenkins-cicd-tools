@@ -1,5 +1,5 @@
 variable "zone_name" {
   type        = string
-  default     = "lingaiah.online"
+  default     = "lithesh.shop"
   description = "description"
 }
