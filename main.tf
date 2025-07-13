@@ -8,16 +8,15 @@ module "jenkins_master" {
   #subnet_id = "subnet-0d7fa2987ed89823d" #replace your Subnet
   ami = data.aws_ami.ami_info.id
   user_data = file("jenkins.sh")
-  tags = {
-    Name = "jenkins"
-  }
-  # Define the root volume size and type
-  root_block_device = {
+    root_block_device = [{
     encrypted  = false           # Not encrypted
     type       = "gp3"           # gp3 volume type
     size       = 100              # 10 GiB
     iops       = 3000            # 3000 IOPS
     throughput = 125             # Optional: default for gp3 is 125 MiB/s
+  }]
+  tags = {
+    Name = "jenkins"
   }
 }
 
@@ -31,16 +30,16 @@ module "jenkins_agent" {
   #subnet_id = "subnet-0d7fa2987ed89823d" #replace your Subnet
   ami = data.aws_ami.ami_info.id
   user_data = file("jenkins-agent.sh")
-  tags = {
-    Name = "jenkins-agent"
-  }
-
-  root_block_device = {
+  root_block_device = [{
     encrypted  = false           # Not encrypted
     type       = "gp3"           # gp3 volume type
     size       = 100              # 10 GiB
     iops       = 3000            # 3000 IOPS
     throughput = 125             # Optional: default for gp3 is 125 MiB/s
+  }]
+  
+  tags = {
+    Name = "jenkins-agent"
   }
 }
 
