@@ -8,12 +8,13 @@ module "jenkins_master" {
   #subnet_id = "subnet-0d7fa2987ed89823d" #replace your Subnet
   ami = data.aws_ami.ami_info.id
   user_data = file("jenkins.sh")
-    root_block_device = [{
-    encrypted  = false           # Not encrypted
-    type       = "gp3"           # gp3 volume type
-    size       = 100              # 10 GiB
-    iops       = 3000            # 3000 IOPS
-    throughput = 125             # Optional: default for gp3 is 125 MiB/s
+  root_block_device = [{
+    encrypted             = false
+    volume_type           = "gp3"
+    volume_size           = 50
+    iops                  = 3000
+    throughput            = 125
+    delete_on_termination = true
   }]
   tags = {
     Name = "jenkins"
@@ -24,20 +25,19 @@ module "jenkins_agent" {
   source  = "terraform-aws-modules/ec2-instance/aws"
 
   name = "jenkins-agent"
-
   instance_type          = "t3.small"
   vpc_security_group_ids = ["sg-09c7c70bd56f0d58b"] #replace your SG
   #subnet_id = "subnet-0d7fa2987ed89823d" #replace your Subnet
   ami = data.aws_ami.ami_info.id
   user_data = file("jenkins-agent.sh")
   root_block_device = [{
-    encrypted  = false           # Not encrypted
-    type       = "gp3"           # gp3 volume type
-    size       = 100              # 10 GiB
-    iops       = 3000            # 3000 IOPS
-    throughput = 125             # Optional: default for gp3 is 125 MiB/s
+    encrypted             = false
+    volume_type           = "gp3"
+    volume_size           = 120
+    iops                  = 3000
+    throughput            = 125
+    delete_on_termination = true
   }]
-  
   tags = {
     Name = "jenkins-agent"
   }
